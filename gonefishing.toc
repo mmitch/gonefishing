@@ -1,0 +1,6 @@
+## Interface: 40200
+## Title : Gone Fishing
+## Notes: Swaps fishing rod with previously equipped items in hands.
+## Author: Christian Garbs <mitch@cgarbs.de>
+gonefishing.lua
+
