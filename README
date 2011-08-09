@@ -8,7 +8,19 @@ ___installation___
  - create a macro that executes the /gonefishing command
 
 
-___todo list___
+___limitations / todos___
 
- - i18n
- - variable fishing rod name (swap two sets, don't fix to fishing rod?)
+ - fishing rod item name fixed to 'Starke Angelrute'
+   > add l10n
+   > add more items (prioritized list?)
+   > check operation at least on enGB client
+   > find a way to check for item type instead of item name
+ - will propably break when there is no fishing rod in the inventory
+   > test this
+   > add nil check
+ - will swap both item sets regardless of manual item changes
+   > discard the isFishing state, check for an equipped fishing rod instead
+ - completely silent operation
+   > add some output (changed this, changed that, did nothing because...)
+ - English documentation
+   > add i18n to .toc, README and messages
