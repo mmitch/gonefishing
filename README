@@ -1,0 +1,14 @@
+fishing rod swapper AddOn for World of Warcraft
+
+___installation___
+
+ - put both gonefishing.toc and gonefishing.lua under
+   Interface/Addons/gonefishing in your WoW directory
+
+ - create a macro that executes the /gonefishing command
+
+
+___todo list___
+
+ - i18n
+ - variable fishing rod name (swap two sets, don't fix to fishing rod?)
