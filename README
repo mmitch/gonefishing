@@ -22,3 +22,5 @@ ___limitations / todos___
    > add some output (changed this, changed that, did nothing because...)
  - English documentation
    > add i18n to .toc, README and messages
+ - add optional button parameters
+   > allow binding on left/right mouse button for a combined fish + switch rod button macro
