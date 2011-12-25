@@ -30,8 +30,8 @@ SlashCmdList["GoneFishing"] =
       if GONEFISHING_isFishing == nil or GONEFISHING_isFishing == 0 then
 	 
 	 -- remember items in hand
-	 rightHandItemId = GetInventoryItemID("player", invSlotRightHand);
-	 leftHandItemId  = GetInventoryItemID("player", invSlotLeftHand);
+	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", invSlotRightHand);
+	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", invSlotLeftHand);
 	 
 	 -- iterate over pole list
 	 local i = 0;
@@ -55,7 +55,7 @@ SlashCmdList["GoneFishing"] =
 	       
 	       -- did it work?
 	       local newRightHandItemId = GetInventoryItemID("player", invSlotRightHand);
-	       if newRightHandItemId ~= rightHandItemId then
+	       if newRightHandItemId ~= GONEFISHING_rightHandItemId then
 		  continue = 0;
 	       end
 	       
@@ -69,8 +69,8 @@ SlashCmdList["GoneFishing"] =
       else
 	 
 	 -- restore saved equipment
-	 EquipItemByName(rightHandItemId, invSlotRightHand);
-	 EquipItemByName(leftHandItemId,  invSlotLeftHand);
+	 EquipItemByName(GONEFISHING_rightHandItemId, invSlotRightHand);
+	 EquipItemByName(GONEFISHING_leftHandItemId,  invSlotLeftHand);
 	 
 	 -- change state to 'not fishing'
 	 GONEFISHING_isFishing = 0;
