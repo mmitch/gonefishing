@@ -10,9 +10,7 @@ ___installation___
 
 ___limitations / todos___
 
- - fishing rod item name fixed to 'Starke Angelrute'
-   > add l10n
-   > add more items (prioritized list?)
+ - fishing rod item name
    > check operation at least on enGB client
    > find a way to check for item type instead of item name
  - will propably break when there is no fishing rod in the inventory
