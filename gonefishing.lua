@@ -2,7 +2,7 @@
 GONEFISHING_isFishing = 0;
 
 -- list of fishing poles, best pole first
-GONEFISHING_rodlist = {
+GONEFISHING_polelist = {
    "Knöcherne Angelrute",
    "Bone Fishing Pole",
 
@@ -41,7 +41,7 @@ SlashCmdList["GoneFishing"] =
 	    
 	    -- get item name from list
 	    i = i + 1;
-	    local itemname = GONEFISHING_rodlist[i];
+	    local itemname = GONEFISHING_polelist[i];
 	    
 	    if itemname == nil then
 	       

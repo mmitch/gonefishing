@@ -1,4 +1,4 @@
-fishing rod swapper AddOn for World of Warcraft
+fishing pole swapper AddOn for World of Warcraft
 
 ___installation___
 
@@ -10,14 +10,14 @@ ___installation___
 
 ___limitations / todos___
 
- - fishing rod item name
+ - fishing pole item name
    > check operation at least on enGB client
    > find a way to check for item type instead of item name
- - will propably break when there is no fishing rod in the inventory
+ - will propably break when there is no fishing pole in the inventory
    > test this
    > add nil check
  - will swap both item sets regardless of manual item changes
-   > discard the isFishing state, check for an equipped fishing rod instead
+   > discard the isFishing state, check for an equipped fishing pole instead
  - completely silent operation
    > add some output (changed this, changed that, did nothing because...)
  - English documentation
