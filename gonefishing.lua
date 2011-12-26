@@ -1,19 +1,21 @@
 -- set state to 'not fishing'
 GONEFISHING_isFishing = 0;
 
--- list of fishing poles, best pole first
+-- list of fishing poles, best pole last
 GONEFISHING_polelist = {
-   "Knöcherne Angelrute",
-   "Bone Fishing Pole",
 
-   "Starke Angelrute",
-   "Strong Fishing Pole",
+   "Einfache Angelrute",
+   "Basic Fishing Pole",
 
    "Angelrute",
    "Fishing Pole",
 
-   "Einfache Angelrute",
-   "Basic Fishing Pole"
+   "Starke Angelrute",
+   "Strong Fishing Pole",
+
+   "Knöcherne Angelrute",
+   "Bone Fishing Pole"
+
 };
 
 -- set slash command
@@ -34,34 +36,13 @@ SlashCmdList["GoneFishing"] =
 	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", invSlotLeftHand);
 	 
 	 -- iterate over pole list
-	 local i = 0;
-	 local continue = 1;
-	 
-	 while continue == 1 do
-	    
-	    -- get item name from list
-	    i = i + 1;
-	    local itemname = GONEFISHING_polelist[i];
-	    
-	    if itemname == nil then
+	 local i, itemname;
+	 for i, itemname in ipairs( GONEFISHING_polelist ) do
+
+	    -- equip fishing pole
+	    EquipItemByName(itemname);
 	       
-	       -- end of list
-	       continue = 0;
-	       
-	    else
-	       
-	       -- equip fishing pole
-	       EquipItemByName(itemname);
-	       
-	       -- did it work?
-	       local newRightHandItemId = GetInventoryItemID("player", invSlotRightHand);
-	       if newRightHandItemId ~= GONEFISHING_rightHandItemId then
-		  continue = 0;
-	       end
-	       
-	    end
-	    
-	 end
+	 end;
 	 
 	 -- change state to 'fishing'
 	 GONEFISHING_isFishing = 1;
@@ -75,7 +56,7 @@ SlashCmdList["GoneFishing"] =
 	 -- change state to 'not fishing'
 	 GONEFISHING_isFishing = 0;
 	 
-      end
+      end;
       
-   end
+   end;
 
