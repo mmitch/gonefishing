@@ -12,6 +12,9 @@ GONEFISHING_polelist = {
 
    "Starke Angelrute",
    "Strong Fishing Pole",
+   
+   "Seths Grafitangelrute",
+   "Seth's Graphite Fishing Pole",
 
    "Knöcherne Angelrute",
    "Bone Fishing Pole"
