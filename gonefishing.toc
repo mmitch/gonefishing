@@ -1,5 +1,5 @@
-## Interface: 40300
-## Title : Gone Fishing
+## Interface: 50001
+## Title: Gone Fishing
 ## Notes: Swaps fishing pole with previously equipped items in hands.
 ## Author: Christian Garbs
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
