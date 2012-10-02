@@ -1,6 +1,3 @@
--- set state to 'not fishing'
-GONEFISHING_isFishing = 0;
-
 -- list of fishing poles, best pole last
 GONEFISHING_polelist = {
 
@@ -31,8 +28,13 @@ SlashCmdList["GoneFishing"] =
       -- get slot IDs
       local invSlotRightHand, textureName = GetInventorySlotInfo("MainHandSlot");
       local invSlotLeftHand,  textureName = GetInventorySlotInfo("SecondaryHandSlot");
-      
-      if GONEFISHING_isFishing == nil or GONEFISHING_isFishing == 0 then
+
+      -- fishing rod in hand?
+      local rightHandItemName = GetItemInfo( GetInventoryItemID("player", invSlotRightHand) );
+      local isFishing = tContains( GONEFISHING_polelist, rightHandItemName );
+
+      -- swap according to fishing state
+      if isFishing == nil or isFishing == 0 then
 	 
 	 -- remember items in hand
 	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", invSlotRightHand);
@@ -47,19 +49,14 @@ SlashCmdList["GoneFishing"] =
 	       
 	 end;
 	 
-	 -- change state to 'fishing'
-	 GONEFISHING_isFishing = 1;
-	 
       else
 	 
 	 -- restore saved equipment
 	 EquipItemByName(GONEFISHING_rightHandItemId, invSlotRightHand);
 	 EquipItemByName(GONEFISHING_leftHandItemId,  invSlotLeftHand);
 	 
-	 -- change state to 'not fishing'
-	 GONEFISHING_isFishing = 0;
-	 
       end;
       
    end;
 
+print("Gonefishing initialized.");

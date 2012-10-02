@@ -16,8 +16,6 @@ ___limitations / todos___
  - will propably break when there is no fishing pole in the inventory
    > test this
    > add nil check
- - will swap both item sets regardless of manual item changes
-   > discard the isFishing state, check for an equipped fishing pole instead
  - completely silent operation
    > add some output (changed this, changed that, did nothing because...)
  - English documentation
