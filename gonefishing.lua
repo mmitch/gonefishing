@@ -143,6 +143,8 @@ SlashCmdList["GoneFishing"] =
 	       
 	 end;
 	 
+	 print("Gonefishing: pole equipped");
+	
       else
 	 
 	 -- restore saved equipment
@@ -151,8 +153,10 @@ SlashCmdList["GoneFishing"] =
 	 EquipItemByName(GONEFISHING_headItemId,      invSlotHead);
 	 EquipItemByName(GONEFISHING_feetItemId,      invSlotFeet);
 	 
+	 print("Gonefishing: equip restored");
+
       end;
       
    end;
 
-print("Gonefishing initialized.");
+print("Gonefishing: initialized");

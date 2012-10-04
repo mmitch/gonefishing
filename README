@@ -16,8 +16,6 @@ ___limitations / todos___
  - fishing pole item name
    > check operation at least on enGB client
    > find a way to check for item type instead of item name
- - completely silent operation
-   > add some output (changed this, changed that, did nothing because...)
  - English documentation
    > add i18n to .toc, README and messages
  - add optional button parameters
