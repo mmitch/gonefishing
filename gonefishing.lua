@@ -105,7 +105,7 @@ SlashCmdList["GoneFishing"] =
    function()
 
       -- fishing rod in hand?
-      local rightHandItemName = GetItemInfo( GetInventoryItemID("player", invSlotRightHand) );
+      local rightHandItemName = GetItemInfo( GetInventoryItemID("player", GONEFISHING_invSlotRightHand) );
       local isFishing = tContains( GONEFISHING_polelist, rightHandItemName );
 
       -- swap according to fishing state
