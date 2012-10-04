@@ -93,15 +93,16 @@ GONEFISHING_polelist = {
 -- set slash command
 SLASH_GoneFishing1 = "/gonefishing";
 
+-- get slot IDs
+local textureName;
+GONEFISHING_invSlotRightHand, textureName = GetInventorySlotInfo("MainHandSlot");
+GONEFISHING_invSlotLeftHand,  textureName = GetInventorySlotInfo("SecondaryHandSlot");
+GONEFISHING_invSlotHead,      textureName = GetInventorySlotInfo("HeadSlot");
+GONEFISHING_invSlotFeet,      textureName = GetInventorySlotInfo("FeetSlot");
+
 -- register command handler
 SlashCmdList["GoneFishing"] =
    function()
-
-      -- get slot IDs
-      local invSlotRightHand, textureName = GetInventorySlotInfo("MainHandSlot");
-      local invSlotLeftHand,  textureName = GetInventorySlotInfo("SecondaryHandSlot");
-      local invSlotHead,      textureName = GetInventorySlotInfo("HeadSlot");
-      local invSlotFeet,      textureName = GetInventorySlotInfo("FeetSlot");
 
       -- fishing rod in hand?
       local rightHandItemName = GetItemInfo( GetInventoryItemID("player", invSlotRightHand) );
@@ -111,10 +112,10 @@ SlashCmdList["GoneFishing"] =
       if isFishing == nil or isFishing == 0 then
 	 
 	 -- remember items in hand
-	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", invSlotRightHand);
-	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", invSlotLeftHand);
-	 GONEFISHING_headItemId      = GetInventoryItemID("player", invSlotHead);
-	 GONEFISHING_feetItemId      = GetInventoryItemID("player", invSlotFeet);
+	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
+	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", GONEFISHING_invSlotLeftHand);
+	 GONEFISHING_headItemId      = GetInventoryItemID("player", GONEFISHING_invSlotHead);
+	 GONEFISHING_feetItemId      = GetInventoryItemID("player", GONEFISHING_invSlotFeet);
 	 
 	 -- iterate over pole list
 	 local i, itemname;
@@ -148,10 +149,10 @@ SlashCmdList["GoneFishing"] =
       else
 	 
 	 -- restore saved equipment
-	 EquipItemByName(GONEFISHING_rightHandItemId, invSlotRightHand);
-	 EquipItemByName(GONEFISHING_leftHandItemId,  invSlotLeftHand);
-	 EquipItemByName(GONEFISHING_headItemId,      invSlotHead);
-	 EquipItemByName(GONEFISHING_feetItemId,      invSlotFeet);
+	 EquipItemByName(GONEFISHING_rightHandItemId, GONEFISHING_invSlotRightHand);
+	 EquipItemByName(GONEFISHING_leftHandItemId,  GONEFISHING_invSlotLeftHand);
+	 EquipItemByName(GONEFISHING_headItemId,      GONEFISHING_invSlotHead);
+	 EquipItemByName(GONEFISHING_feetItemId,      GONEFISHING_invSlotFeet);
 	 
 	 print("Gonefishing: equip restored");
 
