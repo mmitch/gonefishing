@@ -1,3 +1,33 @@
+-- list of fishing hoods, best hood last
+GONEFISHING_hoodlist = {
+
+   -- +5
+
+   "Glücksangelhut",
+
+   "Alter abgewetzter Angelhut",
+
+   "Nats Hut",
+
+   "Wettergegerbter Angelhut"
+
+};
+
+
+-- list of fishing boots, best boot last
+GONEFISHING_bootlist = {
+
+   -- +5
+
+   "Nat Pagles Extremanglerstiefel",
+
+   -- +15
+
+   "Stiefel der Bucht"
+
+};
+
+
 -- list of fishing poles, best pole last
 GONEFISHING_polelist = {
 
@@ -70,6 +100,8 @@ SlashCmdList["GoneFishing"] =
       -- get slot IDs
       local invSlotRightHand, textureName = GetInventorySlotInfo("MainHandSlot");
       local invSlotLeftHand,  textureName = GetInventorySlotInfo("SecondaryHandSlot");
+      local invSlotHead,      textureName = GetInventorySlotInfo("HeadSlot");
+      local invSlotFeet,      textureName = GetInventorySlotInfo("FeetSlot");
 
       -- fishing rod in hand?
       local rightHandItemName = GetItemInfo( GetInventoryItemID("player", invSlotRightHand) );
@@ -81,6 +113,8 @@ SlashCmdList["GoneFishing"] =
 	 -- remember items in hand
 	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", invSlotRightHand);
 	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", invSlotLeftHand);
+	 GONEFISHING_headItemId      = GetInventoryItemID("player", invSlotHead);
+	 GONEFISHING_feetItemId      = GetInventoryItemID("player", invSlotFeet);
 	 
 	 -- iterate over pole list
 	 local i, itemname;
@@ -91,11 +125,31 @@ SlashCmdList["GoneFishing"] =
 	       
 	 end;
 	 
+	 -- iterate over hood list
+	 local i, itemname;
+	 for i, itemname in ipairs( GONEFISHING_hoodlist ) do
+
+	    -- equip fishing hood
+	    EquipItemByName(itemname);
+	       
+	 end;
+	 
+	 -- iterate over boot list
+	 local i, itemname;
+	 for i, itemname in ipairs( GONEFISHING_bootlist ) do
+
+	    -- equip fishing boots
+	    EquipItemByName(itemname);
+	       
+	 end;
+	 
       else
 	 
 	 -- restore saved equipment
 	 EquipItemByName(GONEFISHING_rightHandItemId, invSlotRightHand);
 	 EquipItemByName(GONEFISHING_leftHandItemId,  invSlotLeftHand);
+	 EquipItemByName(GONEFISHING_headItemId,      invSlotHead);
+	 EquipItemByName(GONEFISHING_feetItemId,      invSlotFeet);
 	 
       end;
       
