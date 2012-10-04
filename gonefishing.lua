@@ -1,20 +1,62 @@
 -- list of fishing poles, best pole last
 GONEFISHING_polelist = {
 
+   -- +0 (TODO: check this)
+
    "Einfache Angelrute",
    "Basic Fishing Pole",
 
    "Angelrute",
    "Fishing Pole",
 
+   -- +3
+
+   "Angelrute der Familie Blump",
+
+   "Jonathans Angelrute",
+
+   "Staats Angelrute",
+
+   -- +5
+
    "Starke Angelrute",
    "Strong Fishing Pole",
+
+   -- +10
+
+   "Pandarenangelrute",
+
+   -- +15
+
+   "Dunkelholzangelrute",
+
+   -- +20
    
    "Seths Grafitangelrute",
    "Seth's Graphite Fishing Pole",
 
+   "Nat Pagles Extremangler FC-5000",
+
+   "Große Eisenangelrute",
+
+   -- +25
+
+   "Nats Glücksangel",
+
+   -- +30
+
+   "Meisterliche Angelrute der Kalu'ak",
+
+   "Drachenangel",
+
+   "Juwelenbesetzte Angelrute",
+
    "Knöcherne Angelrute",
-   "Bone Fishing Pole"
+   "Bone Fishing Pole",
+
+   -- +40
+
+   "Arkanitangelrute"
 
 };
 

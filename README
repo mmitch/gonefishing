@@ -10,6 +10,9 @@ ___installation___
 
 ___limitations / todos___
 
+ - complete EN translation
+   > newest additions are missing
+   ? switch to item numbers instead of names ?
  - fishing pole item name
    > check operation at least on enGB client
    > find a way to check for item type instead of item name
