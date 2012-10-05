@@ -111,6 +111,8 @@ SlashCmdList["GoneFishing"] =
       -- swap according to fishing state
       if isFishing == nil or isFishing == 0 then
 	 
+	 print("Gonefishing: equipping fishing pole");
+	
 	 -- remember items in hand
 	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
 	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", GONEFISHING_invSlotLeftHand);
@@ -144,18 +146,16 @@ SlashCmdList["GoneFishing"] =
 	       
 	 end;
 	 
-	 print("Gonefishing: pole equipped");
-	
       else
 	 
+	 print("Gonefishing: restoring saved equipment");
+
 	 -- restore saved equipment
 	 EquipItemByName(GONEFISHING_rightHandItemId, GONEFISHING_invSlotRightHand);
 	 EquipItemByName(GONEFISHING_leftHandItemId,  GONEFISHING_invSlotLeftHand);
 	 EquipItemByName(GONEFISHING_headItemId,      GONEFISHING_invSlotHead);
 	 EquipItemByName(GONEFISHING_feetItemId,      GONEFISHING_invSlotFeet);
 	 
-	 print("Gonefishing: equip restored");
-
       end;
       
    end;
