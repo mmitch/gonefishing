@@ -1,8 +1,8 @@
-## Interface: 50001
+## Interface: 50100
 ## Title: Gone Fishing
 ## Notes: Swaps fishing pole with previously equipped items in hands.
 ## Author: Christian Garbs
-## Version: 1.1
+## Version: 1.2
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
 ## X-Website: http://github.com/mmitch/gonefishing
 gonefishing.lua
