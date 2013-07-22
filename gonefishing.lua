@@ -61,6 +61,9 @@ GONEFISHING_polelist = {
    -- +40
    19970, -- "Arkanitangelrute"
 
+   -- +1000 (GM only)
+   43651, -- "Pfiffis Angelrute"
+
 };
 
 -- set slash command
