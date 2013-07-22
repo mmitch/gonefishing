@@ -78,8 +78,8 @@ SlashCmdList["GoneFishing"] =
    function()
 
       -- fishing rod in hand?
-      local rightHandItemId = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
-      local isFishing = tContains( GONEFISHING_polelist, rightHandItemId );
+      local rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
+      local isFishing = tContains( GONEFISHING_polelist, rightHandItemID );
 
       -- swap according to fishing state
       if isFishing == nil or isFishing == 0 then
@@ -87,10 +87,10 @@ SlashCmdList["GoneFishing"] =
 	 print("Gonefishing: equipping fishing pole");
 	
 	 -- remember items in hand
-	 GONEFISHING_rightHandItemId = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
-	 GONEFISHING_leftHandItemId  = GetInventoryItemID("player", GONEFISHING_invSlotLeftHand);
-	 GONEFISHING_headItemId      = GetInventoryItemID("player", GONEFISHING_invSlotHead);
-	 GONEFISHING_feetItemId      = GetInventoryItemID("player", GONEFISHING_invSlotFeet);
+	 GONEFISHING_rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
+	 GONEFISHING_leftHandItemID  = GetInventoryItemID("player", GONEFISHING_invSlotLeftHand);
+	 GONEFISHING_headItemID      = GetInventoryItemID("player", GONEFISHING_invSlotHead);
+	 GONEFISHING_feetItemID      = GetInventoryItemID("player", GONEFISHING_invSlotFeet);
 	 
 	 -- iterate over pole list
 	 local i, itemid;
@@ -122,10 +122,10 @@ SlashCmdList["GoneFishing"] =
 	 print("Gonefishing: restoring saved equipment");
 
 	 -- restore saved equipment
-	 EquipItemByName(GONEFISHING_rightHandItemId, GONEFISHING_invSlotRightHand);
-	 EquipItemByName(GONEFISHING_leftHandItemId,  GONEFISHING_invSlotLeftHand);
-	 EquipItemByName(GONEFISHING_headItemId,      GONEFISHING_invSlotHead);
-	 EquipItemByName(GONEFISHING_feetItemId,      GONEFISHING_invSlotFeet);
+	 EquipItemByName(GONEFISHING_rightHandItemID, GONEFISHING_invSlotRightHand);
+	 EquipItemByName(GONEFISHING_leftHandItemID,  GONEFISHING_invSlotLeftHand);
+	 EquipItemByName(GONEFISHING_headItemID,      GONEFISHING_invSlotHead);
+	 EquipItemByName(GONEFISHING_feetItemID,      GONEFISHING_invSlotFeet);
 	 
       end;
       
