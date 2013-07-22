@@ -1,20 +1,51 @@
 fishing pole swapper AddOn for World of Warcraft
 
+
 ___installation___
 
- - put both gonefishing.toc and gonefishing.lua under
-   Interface/Addons/gonefishing in your WoW directory
+ - Put both gonefishing.toc and gonefishing.lua under
+   Interface/Addons/gonefishing in your WoW directory.
 
- - create a macro that executes the /gonefishing command
 
- - you can use modifiers, for example in macro like this:
+___basic usage___
+
+ - Create a macro that executes the /gonefishing command.
+
+ - Call the macro to equip everything that raises your fishing
+   skill:  rods, boots and hats.  Gonefishing automatically
+   selects your items with the highest fishing stats.
+   
+ - Call the macro again to unequip your fishing gear and switch
+   back to the gear previously worn.
+
+   CAVEAT 1: Gonefishing uses a fishing rod to track whether you
+             want to equip or unequip your fishing gear.  If you
+             don't have a fishing rod in your inventory,
+             gonefishing can become confused and re-equipping
+             your original gear might not work (e.g. if you have
+             a fishing hat but no fishing rod).
+
+   CAVEAT 2: Gonefishing is dumb and does not save your previous
+             equipment to disk.  If you log out while wearing
+             your fishing gear gonefishing can't switch back to
+             your original gear when you log in again.  (In fact
+             gonefishing will think your fishing gear is your
+             original gear and again become confused.)
+
+
+___advanced usage___
+
+ - Gonefishing supports all [conditionals] so you can write a
+   macro like this:
 
    /use [nomod] fishing 
    /gonefishing [mod]
 
    This will cast your fishing rod if you click the macro
    without any modifiers (shift/ctrl/alt) and it will invoke
-   /gonefishing instead if you hold a modifier.
+   /gonefishing instead only if you hold a modifier.
+   This saves space in your action bar.
+
 
 ___limitations / todos___
 
