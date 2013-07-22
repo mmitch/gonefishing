@@ -1,7 +1,7 @@
 ## Interface: 50300
 ## X-Min-Interface: 50000
 ## Title: Gone Fishing
-## Notes: Swaps fishing pole with previously equipped items in hands.
+## Notes: Equip your fishing gear and later restore previously equipped gear.
 ## Author: Christian Garbs
 ## Version: 1.6
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
