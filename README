@@ -68,6 +68,7 @@ ___updates___
 
 ___limitations / todos___
 
+ - does not take enchantments (eg. gloves) into account
  - colorize debug output
  - English documentation
    > add i18n to .toc, README and messages
