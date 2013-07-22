@@ -94,7 +94,7 @@ SlashCmdList["GoneFishing"] =
       -- swap according to fishing state
       if isFishing == nil or isFishing == 0 then
 	 
-	 print("Gonefishing: equipping fishing pole");
+	 print("Gonefishing: equipping fishing gear");
 	
 	 -- remember items in hand
 	 GONEFISHING_rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
@@ -129,7 +129,20 @@ SlashCmdList["GoneFishing"] =
 	 
       else
 	 
-	 print("Gonefishing: restoring saved equipment");
+	 print("Gonefishing: restoring original gear");
+
+	 -- sanity checks
+	 if GONEFISHING_rightHandItemID == nil then
+	    print("Gonefishing is confused: no original gear known");
+	    return
+	 end
+
+	 if tContains( GONEFISHING_polelist, GONEFISHING_rightHandItemID ) then
+	    print("Gonefishing is confused: original gear contains a fishing rod");
+	    -- this really should not happen except for a coding error -_-;
+	    print("You just won 1000 Intarwebs, please contact the gonefishing author and tell him what you did just now");
+	    return
+	 end
 
 	 -- restore saved equipment
 	 EquipItemByName(GONEFISHING_rightHandItemID, GONEFISHING_invSlotRightHand);
