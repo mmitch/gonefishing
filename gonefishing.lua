@@ -75,8 +75,15 @@ GONEFISHING_invSlotFeet,      textureName = GetInventorySlotInfo("FeetSlot");
 
 -- register command handler
 SlashCmdList["GoneFishing"] =
-   function()
+   function(argv)
 
+      -- check for modifiers
+      argv, _ = SecureCmdOptionParse(argv);
+      if argv == nil then
+	 -- a modifier is in effect that has not been triggered
+	 return;
+      end;
+      
       -- fishing rod in hand?
       local rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
       local isFishing = tContains( GONEFISHING_polelist, rightHandItemID );

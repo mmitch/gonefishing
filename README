@@ -7,11 +7,17 @@ ___installation___
 
  - create a macro that executes the /gonefishing command
 
+ - you can use modifiers, for example in macro like this:
+
+   /use [nomod] fishing 
+   /gonefishing [mod]
+
+   This will cast your fishing rod if you click the macro
+   without any modifiers (shift/ctrl/alt) and it will invoke
+   /gonefishing instead if you hold a modifier.
 
 ___limitations / todos___
 
  - colorize debug output
  - English documentation
    > add i18n to .toc, README and messages
- - add optional button parameters
-   > allow binding on left/right mouse button for a combined fish + switch rod button macro
