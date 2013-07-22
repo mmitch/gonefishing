@@ -70,11 +70,10 @@ GONEFISHING_polelist = {
 SLASH_GoneFishing1 = "/gonefishing";
 
 -- get slot IDs
-local textureName;
-GONEFISHING_invSlotRightHand, textureName = GetInventorySlotInfo("MainHandSlot");
-GONEFISHING_invSlotLeftHand,  textureName = GetInventorySlotInfo("SecondaryHandSlot");
-GONEFISHING_invSlotHead,      textureName = GetInventorySlotInfo("HeadSlot");
-GONEFISHING_invSlotFeet,      textureName = GetInventorySlotInfo("FeetSlot");
+GONEFISHING_invSlotRightHand, _ = GetInventorySlotInfo("MainHandSlot");
+GONEFISHING_invSlotLeftHand,  _ = GetInventorySlotInfo("SecondaryHandSlot");
+GONEFISHING_invSlotHead,      _ = GetInventorySlotInfo("HeadSlot");
+GONEFISHING_invSlotFeet,      _ = GetInventorySlotInfo("FeetSlot");
 
 -- register command handler
 SlashCmdList["GoneFishing"] =
@@ -102,8 +101,8 @@ SlashCmdList["GoneFishing"] =
 	 GONEFISHING_headItemID      = GetInventoryItemID("player", GONEFISHING_invSlotHead);
 	 GONEFISHING_feetItemID      = GetInventoryItemID("player", GONEFISHING_invSlotFeet);
 	 
-	 -- iterate over pole list
 	 local i, itemid;
+	 -- iterate over pole list
 	 for i, itemid in ipairs( GONEFISHING_polelist ) do
 
 	    -- equip fishing pole
@@ -126,7 +125,7 @@ SlashCmdList["GoneFishing"] =
 	    EquipItemByName(itemid);
 	       
 	 end;
-	 
+
       else
 	 
 	 print("Gonefishing: restoring original gear");
@@ -134,15 +133,15 @@ SlashCmdList["GoneFishing"] =
 	 -- sanity checks
 	 if GONEFISHING_rightHandItemID == nil then
 	    print("Gonefishing is confused: no original gear known");
-	    return
-	 end
+	    return;
+	 end;
 
 	 if tContains( GONEFISHING_polelist, GONEFISHING_rightHandItemID ) then
 	    print("Gonefishing is confused: original gear contains a fishing rod");
 	    -- this really should not happen except for a coding error -_-;
 	    print("You just won 1000 Intarwebs, please contact the gonefishing author and tell him what you did just now");
-	    return
-	 end
+	    return;
+	 end;
 
 	 -- restore saved equipment
 	 EquipItemByName(GONEFISHING_rightHandItemID, GONEFISHING_invSlotRightHand);
