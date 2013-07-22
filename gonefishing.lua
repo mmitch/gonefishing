@@ -102,7 +102,6 @@ SlashCmdList["GoneFishing"] =
 	 end;
 	 
 	 -- iterate over hood list
-	 local i, itemid;
 	 for i, itemid in ipairs( GONEFISHING_hoodlist ) do
 
 	    -- equip fishing hood
@@ -111,7 +110,6 @@ SlashCmdList["GoneFishing"] =
 	 end;
 	 
 	 -- iterate over boot list
-	 local i, itemid;
 	 for i, itemid in ipairs( GONEFISHING_bootlist ) do
 
 	    -- equip fishing boots
