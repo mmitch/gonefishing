@@ -1,3 +1,22 @@
+-- Gone Fishing - fishing pole swapper addon for World of Warcraft
+-- Copyright (C) 2013  Christian Garbs <mitch@cgarbs.de>
+-- 
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+--
+--------------------------------------------------------------------------
+
+
 -- list of fishing hoods, best hood last
 GONEFISHING_hoodlist = {
 
@@ -93,7 +112,7 @@ SlashCmdList["GoneFishing"] =
       -- swap according to fishing state
       if isFishing == nil or isFishing == 0 then
 	 
-	 print("Gonefishing: equipping fishing gear");
+	 print("Gone Fishing: equipping fishing gear");
 	
 	 -- remember items in hand
 	 GONEFISHING_rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
@@ -128,18 +147,18 @@ SlashCmdList["GoneFishing"] =
 
       else
 	 
-	 print("Gonefishing: restoring original gear");
+	 print("Gone Fishing: restoring original gear");
 
 	 -- sanity checks
 	 if GONEFISHING_rightHandItemID == nil then
-	    print("Gonefishing is confused: no original gear known");
+	    print("Gone Fishing is confused: no original gear known");
 	    return;
 	 end;
 
 	 if tContains( GONEFISHING_polelist, GONEFISHING_rightHandItemID ) then
-	    print("Gonefishing is confused: original gear contains a fishing rod");
+	    print("Gone Fishing is confused: original gear contains a fishing rod");
 	    -- this really should not happen except for a coding error -_-;
-	    print("You just won 1000 Intarwebs, please contact the gonefishing author and tell him what you did just now");
+	    print("You win 1000 Intarwebs: please contact the Gone Fishing author and tell him what you did just now");
 	    return;
 	 end;
 
@@ -153,4 +172,4 @@ SlashCmdList["GoneFishing"] =
       
    end;
 
-print("Gonefishing: initialized");
+print("Gone Fishing: initialized");

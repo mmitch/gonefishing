@@ -6,5 +6,5 @@
 ## Version: 1.5
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
 ## X-Website: http://github.com/mmitch/gonefishing
+## X-License: GNU GPL v3 or later
 gonefishing.lua
-
