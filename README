@@ -11,12 +11,6 @@ ___installation___
 ___limitations / todos___
 
  - colorize debug output
- - complete EN translation
-   > newest additions are missing
-   ? switch to item numbers instead of names ?
- - fishing pole item name
-   > check operation at least on enGB client
-   > find a way to check for item type instead of item name
  - English documentation
    > add i18n to .toc, README and messages
  - add optional button parameters

@@ -2,14 +2,10 @@
 GONEFISHING_hoodlist = {
 
    -- +5
-
-   "Glücksangelhut",
-
-   "Alter abgewetzter Angelhut",
-
-   "Nats Hut",
-
-   "Wettergegerbter Angelhut"
+   19972, -- "Glücksangelhut",
+   7996,  -- "Alter abgewetzter Angelhut",
+   88710, -- "Nats Hut",
+   33820, -- "Wettergegerbter Angelhut"
 
 };
 
@@ -18,12 +14,10 @@ GONEFISHING_hoodlist = {
 GONEFISHING_bootlist = {
 
    -- +5
-
-   "Nat Pagles Extremanglerstiefel",
+   19969, -- "Nat Pagles Extremanglerstiefel",
 
    -- +15
-
-   "Stiefel der Bucht"
+   50287, -- "Stiefel der Bucht"
 
 };
 
@@ -31,62 +25,41 @@ GONEFISHING_bootlist = {
 -- list of fishing poles, best pole last
 GONEFISHING_polelist = {
 
-   -- +0 (TODO: check this)
-
-   "Einfache Angelrute",
-   "Basic Fishing Pole",
-
-   "Angelrute",
-   "Fishing Pole",
+   -- +0 (not really needed any more…)
+   45120, -- "Einfache Angelrute",
+   6265,  -- "Angelrute",
 
    -- +3
-
-   "Angelrute der Familie Blump",
-
-   "Jonathans Angelrute",
-
-   "Staats Angelrute",
+   12225, -- "Angelrute der Familie Blump",
+   52678, -- "Jonathans Angelrute",
+   46337, -- "Staats Angelrute",
 
    -- +5
-
-   "Starke Angelrute",
-   "Strong Fishing Pole",
+   6365,  -- "Starke Angelrute",
 
    -- +10
-
-   "Pandarenangelrute",
+   84660, -- "Pandarenangelrute",
 
    -- +15
-
-   "Dunkelholzangelrute",
+   6366,  -- "Dunkelholzangelrute",
 
    -- +20
-   
-   "Seths Grafitangelrute",
-   "Seth's Graphite Fishing Pole",
-
-   "Nat Pagles Extremangler FC-5000",
-
-   "Große Eisenangelrute",
+   25978, -- "Seths Grafitangelrute",
+   19022, -- "Nat Pagles Extremangler FC-5000",
+   6367,  -- "Große Eisenangelrute",
 
    -- +25
 
-   "Nats Glücksangel",
+   45858, -- "Nats Glücksangel",
 
    -- +30
-
-   "Meisterliche Angelrute der Kalu'ak",
-
-   "Drachenangel",
-
-   "Juwelenbesetzte Angelrute",
-
-   "Knöcherne Angelrute",
-   "Bone Fishing Pole",
+   44050, -- "Meisterliche Angelrute der Kalu'ak",
+   84661, -- "Drachenangel",
+   45992, -- "Juwelenbesetzte Angelrute",
+   45991, -- "Knöcherne Angelrute",
 
    -- +40
-
-   "Arkanitangelrute"
+   19970, -- "Arkanitangelrute"
 
 };
 
@@ -105,8 +78,8 @@ SlashCmdList["GoneFishing"] =
    function()
 
       -- fishing rod in hand?
-      local rightHandItemName = GetItemInfo( GetInventoryItemID("player", GONEFISHING_invSlotRightHand) );
-      local isFishing = tContains( GONEFISHING_polelist, rightHandItemName );
+      local rightHandItemId = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
+      local isFishing = tContains( GONEFISHING_polelist, rightHandItemId );
 
       -- swap according to fishing state
       if isFishing == nil or isFishing == 0 then
@@ -120,29 +93,29 @@ SlashCmdList["GoneFishing"] =
 	 GONEFISHING_feetItemId      = GetInventoryItemID("player", GONEFISHING_invSlotFeet);
 	 
 	 -- iterate over pole list
-	 local i, itemname;
-	 for i, itemname in ipairs( GONEFISHING_polelist ) do
+	 local i, itemid;
+	 for i, itemid in ipairs( GONEFISHING_polelist ) do
 
 	    -- equip fishing pole
-	    EquipItemByName(itemname);
+	    EquipItemByName(itemid);
 	       
 	 end;
 	 
 	 -- iterate over hood list
-	 local i, itemname;
-	 for i, itemname in ipairs( GONEFISHING_hoodlist ) do
+	 local i, itemid;
+	 for i, itemid in ipairs( GONEFISHING_hoodlist ) do
 
 	    -- equip fishing hood
-	    EquipItemByName(itemname);
+	    EquipItemByName(itemid);
 	       
 	 end;
 	 
 	 -- iterate over boot list
-	 local i, itemname;
-	 for i, itemname in ipairs( GONEFISHING_bootlist ) do
+	 local i, itemid;
+	 for i, itemid in ipairs( GONEFISHING_bootlist ) do
 
 	    -- equip fishing boots
-	    EquipItemByName(itemname);
+	    EquipItemByName(itemid);
 	       
 	 end;
 	 
