@@ -24,14 +24,14 @@ if (GetLocale() == "deDE") then
    GONEFISHING_ERR_TELLME       = "Über 9000! Bitte kontaktiere den Autor von Gone Fishing author und verrate ihm, was Du gerade gemacht hast";
    GONEFISHING_MSG_EQUIP        = "Gone Fishing: lege Angelausrüstung an";
    GONEFISHING_MSG_RESTORE      = "Gone Fishing: lege ursprüngliche Ausrüstung an";
-   GONEFISHING_MSG_STARTUP      = "Gone Fishing: initialisiert";
+   GONEFISHING_MSG_STARTUP      = "Gone Fishing version %s initialisiert";
 else
    GONEFISHING_ERR_NOSAVEDGEAR  = "Gone Fishing is confused: no original gear known";
    GONEFISHING_ERR_RODSAVED     = "Gone Fishing is confused: original gear contains a fishing rod";
    GONEFISHING_ERR_TELLME       = "You win 1000 Intarwebs: please contact the Gone Fishing author and tell him what you did just now";
    GONEFISHING_MSG_EQUIP        = "Gone Fishing: equipping fishing gear";
    GONEFISHING_MSG_RESTORE      = "Gone Fishing: restoring original gear";
-   GONEFISHING_MSG_STARTUP      = "Gone Fishing: initialized";
+   GONEFISHING_MSG_STARTUP      = "Gone Fishing version %s initialized";
 end;
 
 -- END LOCALIZATION
@@ -191,4 +191,4 @@ SlashCmdList["GoneFishing"] =
       
    end;
 
-print(GONEFISHING_MSG_STARTUP);
+print( string.format(GONEFISHING_MSG_STARTUP, GetAddOnMetadata("gonefishing", "Version") ) );
