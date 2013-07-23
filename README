@@ -69,6 +69,9 @@ ___updates___
 ___limitations / todos___
 
  - does not take enchantments (eg. gloves) into account
- - colorize debug output
- - English documentation
-   > add i18n to .toc, README and messages
+ - colorize debug output (unneeded?)
+ - translate README (don't want to...)
+ - save stored gear over login/logout
+   > check if this could lead to confusion and problems
+ - use a flag instead of RightHandItemId to rememver a stored set,
+   otherwise wearing no gloves breaks things
