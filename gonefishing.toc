@@ -6,7 +6,7 @@
 ## Author: Christian Garbs
 ## Version: 1.6
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
-## X-Website: http://github.com/mmitch/gonefishing
+## X-Website: http://wow.curseforge.com/addons/gonefishing/
 ## X-License: GNU GPL v3 or later
 gonefishing.lua
 
