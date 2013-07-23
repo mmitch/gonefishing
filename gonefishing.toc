@@ -2,9 +2,11 @@
 ## X-Min-Interface: 50000
 ## Title: Gone Fishing
 ## Notes: Equip your fishing gear and later restore previously equipped gear.
+## Notes-deDE: Lege deine Angelausrüstung an wechsele später wieder in deine alten Klamotten.
 ## Author: Christian Garbs
 ## Version: 1.6
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
 ## X-Website: http://github.com/mmitch/gonefishing
 ## X-License: GNU GPL v3 or later
 gonefishing.lua
+

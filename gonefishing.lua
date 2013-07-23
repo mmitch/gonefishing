@@ -16,6 +16,25 @@
 --
 --------------------------------------------------------------------------
 
+-- BEGIN LOCALIZATION
+
+if (GetLocale() == "deDE") then
+   GONEFISHING_ERR_NOSAVEDGEAR  = "Gone Fishing ist verwirrt: keine ursprüngliche Ausrüstung gespeichert";
+   GONEFISHING_ERR_RODSAVED     = "Gone Fishing ist verwirrt: ursprüngliche Ausrüstung enthält eine Angel";
+   GONEFISHING_ERR_TELLME       = "Über 9000! Bitte kontaktiere den Autor von Gone Fishing author und verrate ihm, was Du gerade gemacht hast";
+   GONEFISHING_MSG_EQUIP        = "Gone Fishing: lege Angelausrüstung an";
+   GONEFISHING_MSG_RESTORE      = "Gone Fishing: lege ursprüngliche Ausrüstung an";
+   GONEFISHING_MSG_STARTUP      = "Gone Fishing: initialisiert";
+else
+   GONEFISHING_ERR_NOSAVEDGEAR  = "Gone Fishing is confused: no original gear known";
+   GONEFISHING_ERR_RODSAVED     = "Gone Fishing is confused: original gear contains a fishing rod";
+   GONEFISHING_ERR_TELLME       = "You win 1000 Intarwebs: please contact the Gone Fishing author and tell him what you did just now";
+   GONEFISHING_MSG_EQUIP        = "Gone Fishing: equipping fishing gear";
+   GONEFISHING_MSG_RESTORE      = "Gone Fishing: restoring original gear";
+   GONEFISHING_MSG_STARTUP      = "Gone Fishing: initialized";
+end;
+
+-- END LOCALIZATION
 
 -- list of fishing hoods, best hood last
 GONEFISHING_hoodlist = {
@@ -112,7 +131,7 @@ SlashCmdList["GoneFishing"] =
       -- swap according to fishing state
       if isFishing == nil or isFishing == 0 then
 	 
-	 print("Gone Fishing: equipping fishing gear");
+	 print(GONEFISHING_MSG_EQUIP);
 	
 	 -- remember items in hand
 	 GONEFISHING_rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand);
@@ -147,18 +166,18 @@ SlashCmdList["GoneFishing"] =
 
       else
 	 
-	 print("Gone Fishing: restoring original gear");
+	 print(GONEFISHING_MSG_RESTORE);
 
 	 -- sanity checks
 	 if GONEFISHING_rightHandItemID == nil then
-	    print("Gone Fishing is confused: no original gear known");
+	    print(GONEFISHING_ERR_NOSAVEDGEAR);
 	    return;
 	 end;
 
 	 if tContains( GONEFISHING_polelist, GONEFISHING_rightHandItemID ) then
-	    print("Gone Fishing is confused: original gear contains a fishing rod");
+	    print(GONEFISHING_ERR_RODSAVED);
 	    -- this really should not happen except for a coding error -_-;
-	    print("You win 1000 Intarwebs: please contact the Gone Fishing author and tell him what you did just now");
+	    print(GONEFISHING_ERR_TELLME);
 	    return;
 	 end;
 
@@ -172,4 +191,4 @@ SlashCmdList["GoneFishing"] =
       
    end;
 
-print("Gone Fishing: initialized");
+print(GONEFISHING_MSG_STARTUP);
