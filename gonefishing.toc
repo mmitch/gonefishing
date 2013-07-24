@@ -4,7 +4,7 @@
 ## Notes: Equip your fishing gear and later restore previously equipped gear.
 ## Notes-deDE: Lege deine Angelausrüstung an wechsele später wieder in deine alten Klamotten.
 ## Author: Christian Garbs
-## Version: 1.6
+## Version: 1.7
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
 ## X-Website: http://wow.curseforge.com/addons/gonefishing/
 ## X-License: GNU GPL v3 or later
