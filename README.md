@@ -1,6 +1,6 @@
 ## Gone Fishing
 
-Gone Fishing - fishing pole swapper addon for World of Warcraft  
+Gone Fishing - fishing gear swapper addon for World of Warcraft  
 Copyright (C) 2013  Christian Garbs <mitch@cgarbs.de>
  
 This program is free software: you can redistribute it and/or modify
