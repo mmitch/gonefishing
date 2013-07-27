@@ -20,13 +20,23 @@
 --------------------------------------------------------------------------
 -- helper functions
 
+function toString(var)
+   if var == nil then
+      return "nil"
+   end
+   if var == true then
+      return "true"
+   end
+   if var == false then
+      return "false"
+   end
+   return var
+end
+
 function list2string(list)
    local newlist = {}
    for k,v in pairs(list) do
-      if v == nil then
-	 v = "nil"
-      end
-      table.insert(newlist, v)
+      table.insert(newlist, toString(v))
    end
    return "{" .. table.concat(newlist, ", ") .. "}"
 end
@@ -84,6 +94,31 @@ function assertEqualsList(listExpected, listActual, reason, level)
    end
 end
 
+function assertEquals(expected, actual, reason, level)
+
+   if expected ~= actual then
+      if reason == nil then
+	 reason = "list content differs"
+      end
+      if level == nil then
+	 level = 0
+      end
+      fail(reason .. ", expected: " .. toString(expected) .. ", actual: " .. toString(actual), level + 1)
+   end
+end
+
+function assertTrue(boolean, reason, level)
+
+   if reason == nil then
+      reason = "assertion not true"
+   end
+   if level == nil then
+      level = 0
+   end
+   return assertEquals(true, boolean, reason, level + 1)
+
+end
+
 --------------------------------------------------------------------------
 -- WOW Framework test hooks/injection/introspection
 
@@ -114,7 +149,7 @@ function checkBags(list)
 end
 
 function addItemSlots(list, slot)
-   for i,v in ipairs(list) do
+   for k,v in pairs(list) do
       TEST_itemslot[v] = slot
    end
 end
@@ -157,7 +192,7 @@ function GetInventoryItemID(who, slot)
 end
 
 function tContains(table, item)
-   for i,v in ipairs(table) do
+   for k,v in pairs(table) do
       if ( item == v ) then
 	 return 1
       end
@@ -165,29 +200,53 @@ function tContains(table, item)
    return nil
 end
 
-function EquipItemByName(itemid)
-   local bagPos = listPos(TEST_bags, itemid)
-   if bagPos > 0 then
-      local slot = TEST_itemslot[itemid]
-      assertNotNull(slot, "item slot unknown for itemid " .. itemid)
-      if slot > 0 then
-	 if TEST_equip[slot] and TEST_equip[slot] > 0 then
-	    table.insert( TEST_bags, TEST_equip[slot] )
-	 end
-	 table.remove( TEST_bags, bagPos )
-	 TEST_equip[slot] = itemid
-      else
-	 -- dual hand
-	 if TEST_equip[1] and TEST_equip[1] > 0 then
-	    table.insert( TEST_bags, TEST_equip[1] )
-	 end
-	 if TEST_equip[2] and TEST_equip[2] > 0 then
-	    table.insert( TEST_bags, TEST_equip[2] )
-	 end
-	 table.remove( TEST_bags, bagPos )
-	 TEST_equip[1] = itemid
-	 TEST_equip[2] = 0
+function EquipItemByName(itemid, slot)
+   assertNotNull(slot, "slot id not given", 1) -- we want this, it's more precose (should work without as well)
+   assertEquals( 1, tContains( TEST_slots, slot ), "unknown slot id", 1)
+
+   -- if dual-hand item is wielded, offhand actions are blocked
+   if slot == 2 and TEST_equip[1] and TEST_equip[1] > 0 and TEST_itemslot[TEST_equip[1]] == 0 then
+      return
+   end
+
+   if itemid then
+      local TEST_slot = TEST_itemslot[itemid]
+      assertNotNull(TEST_slot, "item slot unknown for itemid " .. itemid, 1)
+      -- special case: dual hand (slot 0) can be equipped to mainhand (slot 1)
+      if not ( TEST_slot == 0 and slot == 1 ) then
+	 assertEquals(TEST_slot, slot, "given slot is wrong for itemid " .. itemid, 1)
       end
+
+      -- equip item
+      local bagPos = listPos(TEST_bags, itemid)
+      if bagPos > 0 then
+	 if TEST_slot > 0 then
+	    if TEST_equip[slot] and TEST_equip[slot] > 0 then
+	       table.insert( TEST_bags, TEST_equip[slot] )
+	    end
+	    table.remove( TEST_bags, bagPos )
+	    TEST_equip[slot] = itemid
+	 else
+	    -- dual hand
+	    if TEST_equip[1] and TEST_equip[1] > 0 then
+	       table.insert( TEST_bags, TEST_equip[1] )
+	    end
+	    if TEST_equip[2] and TEST_equip[2] > 0 then
+	       table.insert( TEST_bags, TEST_equip[2] )
+	    end
+	    table.remove( TEST_bags, bagPos )
+	    TEST_equip[1] = itemid
+	    TEST_equip[2] = 0
+	 end
+      end
+
+   else
+      -- equip nothing
+      if TEST_equip[slot] and TEST_equip[slot] > 0 then
+	 table.insert( TEST_bags, TEST_equip[slot] )
+      end
+      TEST_equip[slot] = 0
+
    end
 end
 
@@ -246,13 +305,13 @@ checkEquip( {} )
 print("Test 3 ::")
 reset_test()
 TEST_bags = { 6265 }
-TEST_equip = {}
+TEST_equip = { 0, 0, 0, 0 }
 run_test()
 checkBags( {} )
-checkEquip( { 6265, 0 } )
+checkEquip( { 6265, 0, 0, 0  } )
 run_test()
 checkBags( { 6265 } )
-checkEquip( {} )
+checkEquip( { 0, 0, 0, 0 } )
 
 -- fully equipped character
 print("Test 4 ::")
@@ -271,13 +330,10 @@ print("Test 5 ::")
 reset_test()
 TEST_bags = { 6365, 7996, 1234 }
 TEST_equip = { 5, 0, 0, 4 }
-debug()
 run_test()
-debug()
 checkBags( { 1234, 5 } )
 checkEquip( { 6365, 0, 7996, 4 } )
 run_test()
-debug()
 checkBags( { 1234, 6365, 7996 } )
 checkEquip( { 5, 0, 0, 4} )
 
