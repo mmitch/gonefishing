@@ -20,15 +20,13 @@
 
 if (GetLocale() == "deDE") then
    GONEFISHING_ERR_NOSAVEDGEAR    = "Gone Fishing ist verwirrt: keine ursprüngliche Ausrüstung gespeichert"
-   GONEFISHING_ERR_RODSAVED       = "Gone Fishing ist verwirrt: ursprüngliche Ausrüstung enthält eine Angel"
-   GONEFISHING_ERR_CONTACTAUTHOR  = "Über 9000! Bitte kontaktiere den Autor von Gone Fishing author und verrate ihm, was Du gerade gemacht hast"
+   GONEFISHING_ERR_EQUIPSAVEDGEAR = "Gone Fishing: Fehler beim Anlegen der ursprünglichen Ausrüstung"
    GONEFISHING_MSG_EQUIP          = "Gone Fishing: lege Angelausrüstung an"
    GONEFISHING_MSG_RESTORE        = "Gone Fishing: lege ursprüngliche Ausrüstung an"
    GONEFISHING_MSG_STARTUP        = "Gone Fishing version %s initialisiert"
 else
    GONEFISHING_ERR_NOSAVEDGEAR    = "Gone Fishing is confused: no original gear known"
-   GONEFISHING_ERR_RODSAVED       = "Gone Fishing is confused: original gear contains a fishing rod"
-   GONEFISHING_ERR_CONTACTAUTHOR  = "You win 1000 Intarwebs: please contact the Gone Fishing author and tell him what you did just now"
+   GONEFISHING_ERR_EQUIPSAVEDGEAR = "Gone Fishing: error while equipping original gear"
    GONEFISHING_MSG_EQUIP          = "Gone Fishing: equipping fishing gear"
    GONEFISHING_MSG_RESTORE        = "Gone Fishing: restoring original gear"
    GONEFISHING_MSG_STARTUP        = "Gone Fishing version %s initialized"
@@ -107,11 +105,29 @@ GONEFISHING_polelist = {
 -- set slash command
 SLASH_GoneFishing1 = "/gonefishing"
 
+-- equipment set name
+GONEFISHING_equipSetName = "GONEFISHING_tmp"
+
 -- get slot IDs
 GONEFISHING_invSlotRightHand, _ = GetInventorySlotInfo("MainHandSlot")
 GONEFISHING_invSlotLeftHand,  _ = GetInventorySlotInfo("SecondaryHandSlot")
 GONEFISHING_invSlotHead,      _ = GetInventorySlotInfo("HeadSlot")
 GONEFISHING_invSlotFeet,      _ = GetInventorySlotInfo("FeetSlot")
+
+-- global variable for status saved/fishing
+GONEFISHING_savedgear = false
+
+-- equip an item to a slot
+-- unequip slot when item is nil
+function GONEFISHING_equip(item, slot)
+   if item == nil then
+      PickupInventoryItem(slot)
+      PutItemInBackpack()
+   else
+      EquipItemByName(item, slot)
+   end
+end
+
 
 -- register command handler
 SlashCmdList["GoneFishing"] =
@@ -134,17 +150,15 @@ SlashCmdList["GoneFishing"] =
 	 print(GONEFISHING_MSG_EQUIP)
 	
 	 -- remember items in hand
-	 GONEFISHING_rightHandItemID = GetInventoryItemID("player", GONEFISHING_invSlotRightHand)
-	 GONEFISHING_leftHandItemID  = GetInventoryItemID("player", GONEFISHING_invSlotLeftHand)
-	 GONEFISHING_headItemID      = GetInventoryItemID("player", GONEFISHING_invSlotHead)
-	 GONEFISHING_feetItemID      = GetInventoryItemID("player", GONEFISHING_invSlotFeet)
+	 SaveEquipmentSet(GONEFISHING_equipSetName) -- TODO find fishing icon
+	 GONEFISHING_savedgear = true
 	 
 	 local i, itemid
 	 -- iterate over pole list
 	 for i, itemid in ipairs( GONEFISHING_polelist ) do
 
 	    -- equip fishing pole
-	    EquipItemByName(itemid)
+	    EquipItemByName(itemid, GONEFISHING_invSlotRightHand)
 	       
 	 end
 	 
@@ -152,7 +166,7 @@ SlashCmdList["GoneFishing"] =
 	 for i, itemid in ipairs( GONEFISHING_hoodlist ) do
 
 	    -- equip fishing hood
-	    EquipItemByName(itemid)
+	    EquipItemByName(itemid, GONEFISHING_invSlotHead)
 	       
 	 end
 	 
@@ -160,7 +174,7 @@ SlashCmdList["GoneFishing"] =
 	 for i, itemid in ipairs( GONEFISHING_bootlist ) do
 
 	    -- equip fishing boots
-	    EquipItemByName(itemid)
+	    EquipItemByName(itemid, GONEFISHING_invSlotFeet)
 	       
 	 end
 
@@ -169,23 +183,20 @@ SlashCmdList["GoneFishing"] =
 	 print(GONEFISHING_MSG_RESTORE)
 
 	 -- sanity checks
-	 if GONEFISHING_rightHandItemID == nil then
+	 if not GONEFISHING_savedgear then
 	    print(GONEFISHING_ERR_NOSAVEDGEAR)
 	    return
 	 end
 
-	 if tContains( GONEFISHING_polelist, GONEFISHING_rightHandItemID ) then
-	    print(GONEFISHING_ERR_RODSAVED)
-	    -- this really should not happen except for a coding error -_-;
-	    print(GONEFISHING_ERR_CONTACTAUTHOR)
+	 -- restore saved equipment
+	 if not UseEquipmentSet(GONEFISHING_equipSetName) then
+	    print(GONEFISHING_ERR_EQUIPSAVEDGEAR)
 	    return
 	 end
-
-	 -- restore saved equipment
-	 EquipItemByName(GONEFISHING_rightHandItemID, GONEFISHING_invSlotRightHand)
-	 EquipItemByName(GONEFISHING_leftHandItemID,  GONEFISHING_invSlotLeftHand)
-	 EquipItemByName(GONEFISHING_headItemID,      GONEFISHING_invSlotHead)
-	 EquipItemByName(GONEFISHING_feetItemID,      GONEFISHING_invSlotFeet)
+	 GONEFISHING_savedgear = false
+	 
+	 -- remove saved equipment, not needed any more
+	 DeleteEquipmentSet(GONEFISHING_equipSetName)
 	 
       end
       

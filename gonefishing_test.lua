@@ -42,9 +42,9 @@ function list2string(list)
 end
 
 function listPos(list, value)
-   for i,v in ipairs(list) do
+   for k,v in pairs(list) do
       if value == v then
-	 return i
+	 return k
       end
    end
    return 0

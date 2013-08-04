@@ -63,17 +63,18 @@ Put both ```gonefishing.toc``` and ```gonefishing.lua``` under
 
 ## Limitations
 
-Gone Fishing uses a fishing rod to track whether you want to equip
-or unequip your fishing gear.  If you don't have a fishing rod in
-your inventory, Gone Fishing can become confused and re-equipping
-your original gear might not work (e.g. if you have a fishing hat
-but no fishing rod).
-
 Gone Fishing is dumb and does not save your previous equipment to
 disk.  If you log out while wearing your fishing gear, Gone Fishing
 can't switch back to your original gear after you log in again.
 (In fact Gonefishing will think your fishing gear is your original
 gear and again become confused.)
+
+Gone Fishing uses an equipment set named "GONEFISHING_tmp" to store
+your original gear.  After restoring your gear, the equipment set is
+deleted.  So be warned: If you create you own equipment set named
+"GONEFISHING_tmp", it will be overwritten and deleted.  Of course
+nobody will ever name their equipment sets that way, but you
+officially have been warned :-)
 
 
 #### Todo list
@@ -83,5 +84,3 @@ gear and again become confused.)
 - translate README (don't want to...)
 - save stored gear over login/logout.
   check if this could lead to confusion and problems
-- use a flag instead of RightHandItemId to rememver a stored set,
-  otherwise wearing no gloves breaks things
