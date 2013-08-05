@@ -150,7 +150,7 @@ SlashCmdList["GoneFishing"] =
 	 print(GONEFISHING_MSG_EQUIP)
 	
 	 -- remember items in hand
-	 SaveEquipmentSet(GONEFISHING_equipSetName) -- TODO find fishing icon
+	 SaveEquipmentSet(GONEFISHING_equipSetName)
 	 GONEFISHING_savedgear = true
 	 
 	 local i, itemid

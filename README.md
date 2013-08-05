@@ -80,6 +80,7 @@ officially have been warned :-)
 #### Todo list
 
 - does not take enchantments (eg. gloves) into account
+- choose a nice icon for the equipment set
 - colorize debug output (unneeded?)
 - translate README (don't want to...)
 - save stored gear over login/logout.
