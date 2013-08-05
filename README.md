@@ -31,6 +31,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 4. Call the macro again to unequip your fishing gear and switch
    back to the gear previously worn.
 
+Gone Fishing temporarily uses an equipment set named
+```GONEFISHING_tmp``` to store your original gear – so don't edit this
+equipment set (you will confuse Gone Fishing) and don't create your
+own set with that name (it will be overwritten/deleted).
+
 
 ## Advanced usage
 
@@ -63,18 +68,14 @@ Put both ```gonefishing.toc``` and ```gonefishing.lua``` under
 
 ## Limitations
 
+Gone Fishing does not yet know about gloves with fishing skill
+enchantments.  I'm working on it.
+
 Gone Fishing is dumb and does not save your previous equipment to
 disk.  If you log out while wearing your fishing gear, Gone Fishing
 can't switch back to your original gear after you log in again.
 (In fact Gonefishing will think your fishing gear is your original
 gear and again become confused.)
-
-Gone Fishing uses an equipment set named "GONEFISHING_tmp" to store
-your original gear.  After restoring your gear, the equipment set is
-deleted.  So be warned: If you create you own equipment set named
-"GONEFISHING_tmp", it will be overwritten and deleted.  Of course
-nobody will ever name their equipment sets that way, but you
-officially have been warned :-)
 
 
 #### Todo list
