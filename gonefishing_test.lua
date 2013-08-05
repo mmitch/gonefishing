@@ -34,6 +34,10 @@ function toString(var)
 end
 
 function list2string(list)
+   if list == nil then
+      return "nil"
+   end
+
    local newlist = {}
    for k,v in pairs(list) do
       table.insert(newlist, toString(v))
@@ -48,6 +52,15 @@ function listPos(list, value)
       end
    end
    return 0
+end
+
+function keyContained(list, key)
+   for k,v in pairs(list) do
+      if key == k then
+	 return true
+      end
+   end
+   return false
 end
 
 --------------------------------------------------------------------------
@@ -139,6 +152,7 @@ TEST_itemslot = {
    [4] = 4,
    [5] = 0,
 }
+TEST_equipset = {}
 
 function checkEquip(list)
    assertEqualsList(list, TEST_equip, "wrong equipment", 1)
@@ -156,17 +170,10 @@ end
 
 function debug()
    print()
-   print("bags:  " .. list2string(TEST_bags))
-   print("equip: " .. list2string(TEST_equip))
-   print("orig:  " .. list2string(
-	    {
-		GONEFISHING_rightHandItemID,
-		GONEFISHING_leftHandItemID,
-		GONEFISHING_headItemID,
-		GONEFISHING_feetItemID
-	    }
-      ))
-   print();
+   print("bags:   " .. list2string(TEST_bags))
+   print("equip:  " .. list2string(TEST_equip))
+   print("stored: " .. list2string(TEST_equipset[GONEFISHING_equipSetName]))
+   print()
 end
 
 --------------------------------------------------------------------------
@@ -201,7 +208,7 @@ function tContains(table, item)
 end
 
 function EquipItemByName(itemid, slot)
-   assertNotNull(slot, "slot id not given", 1) -- we want this, it's more precose (should work without as well)
+   assertNotNull(slot, "slot id not given", 1) -- we want this, it's more precise (should work without as well)
    assertEquals( 1, tContains( TEST_slots, slot ), "unknown slot id", 1)
 
    -- if dual-hand item is wielded, offhand actions are blocked
@@ -242,10 +249,62 @@ function EquipItemByName(itemid, slot)
 
    else
       -- equip nothing
-      if TEST_equip[slot] and TEST_equip[slot] > 0 then
-	 table.insert( TEST_bags, TEST_equip[slot] )
+
+      -- >>> WoW can't just equip "nothing".  This is a NO-OP and the
+      -- >>> reason gonefishing has switched to EquipmentSets.
+
+      -- if TEST_equip[slot] and TEST_equip[slot] > 0 then
+      --    table.insert( TEST_bags, TEST_equip[slot] )
+      -- end
+      -- TEST_equip[slot] = 0
+
+   end
+end
+
+function SaveEquipmentSet(name, icon)
+   -- icon is ignored, it's optional anyways
+   assertNotNull(name, "no name given", 1)
+   
+   -- we need a full copy, a reference would be manipulated by changing equip!
+   local newlist = {}
+   for k,v in pairs(TEST_equip) do
+      newlist[k] = v
+   end
+
+   TEST_equipset[name] = newlist
+end
+
+function DeleteEquipmentSet(name)
+   assertNotNull(name, "no name given", 1)
+
+   TEST_equipset[name] = nil;
+end
+
+function UseEquipmentSet(name)
+   assertNotNull(name, "no name given", 1)
+
+   if keyContained(TEST_equipset, name) then
+
+      for slot,itemid in ipairs(TEST_equipset[name]) do
+	 if itemid then
+	    if itemid > 0 then
+	       -- regular equip works
+	       EquipItemByName(itemid, slot)
+	    else
+	       -- "equip nothing" can't be done via EquipItemByName()
+	       if TEST_equip[slot] > 0 then
+		  table.insert( TEST_bags, TEST_equip[slot] )
+		  TEST_equip[slot] = 0
+	       end
+	    end
+	 end
       end
-      TEST_equip[slot] = 0
+
+      return true
+
+   else
+
+      return false
 
    end
 end
