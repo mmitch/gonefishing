@@ -2,7 +2,7 @@
 ## X-Min-Interface: 50000
 ## Title: Gone Fishing
 ## Notes: Equip your fishing gear and later restore previously equipped gear.
-## Notes-deDE: Lege deine Angelausrüstung an wechsele später wieder in deine alten Klamotten.
+## Notes-deDE: Lege deine Angelausrüstung an und wechsele später wieder in deine alten Klamotten zurück.
 ## Author: Christian Garbs
 ## Version: 1.8
 ## X-Feedback: Christian Garbs <mitch@cgarbs.de>
