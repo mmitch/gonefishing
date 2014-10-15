@@ -1,4 +1,4 @@
-## Interface: 50400
+## Interface: 60000
 ## X-Min-Interface: 50000
 ## Title: Gone Fishing
 ## Notes: Equip your fishing gear and later restore previously equipped gear.
